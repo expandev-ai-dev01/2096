@@ -3,8 +3,11 @@ import { Card, CardContent } from '@/core/components/card';
 import { cn } from '@/core/lib/utils';
 import type { ProductCardProps } from './types';
 import { parseISO } from 'date-fns';
+import { useNavigation } from '@/core/hooks/useNavigation';
 
 function ProductCard({ product, onInteraction, className }: ProductCardProps) {
+  const { navigate } = useNavigation();
+
   const isNew = () => {
     const createdDate = parseISO(product.createdDate);
     const daysSinceCreation = Math.floor(
@@ -17,6 +20,7 @@ function ProductCard({ product, onInteraction, className }: ProductCardProps) {
     if (onInteraction) {
       onInteraction(product.id, 'click');
     }
+    navigate(`/produto/${product.id}`);
   };
 
   const formatPrice = (price: number | null) => {
