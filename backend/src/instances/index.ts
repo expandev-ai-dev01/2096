@@ -6,4 +6,7 @@
  * @module instances
  */
 
-
+/**
+ * Product instances
+ */
+export { productStore, type ProductRecord } from './product';
